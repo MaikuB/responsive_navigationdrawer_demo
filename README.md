@@ -1,2 +1,5 @@
 # responsive_navigationdrawer_demo
-A responsive Flutter application using Material Design that demonstrates how to handle the navigation drawer. See it running on the web https://maikub.github.io/responsive-navigationdrawer-demo (note: if you don't use Chrome then the icons may not be displayed properly)
+[![Codemagic build status](https://api.codemagic.io/apps/5d8b2a4f45c4dc0011f7fc38/5d8b2a4f45c4dc0011f7fc37/status_badge.svg)](https://codemagic.io/apps/5d8b2a4f45c4dc0011f7fc38/5d8b2a4f45c4dc0011f7fc37/latest_build)
+
+A responsive Flutter application using Material Design that demonstrates how to handle the navigation drawer. Note that this was built using Flutter SDK version 1.10.5 that at time of writing was on the dev channel.
+See it running online at https://responsive-navigationdrawer-demo.codemagic.app. It is recommended that you use Chrome as there may be issues on other browsers, such as icons not rendering properly
