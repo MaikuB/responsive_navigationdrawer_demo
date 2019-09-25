@@ -12,33 +12,32 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width >= 600) {
-      return Row(
-        children: [
-          const AppDrawer(
-            permanentlyDisplay: true,
-          ),
-          Expanded(
-            child: Scaffold(
-              appBar: AppBar(
-                //
-                automaticallyImplyLeading: false,
-                title: Text(pageTitle),
-              ),
-              body: body,
-            ),
-          )
-        ],
-      );
-    }
-    return Scaffold(
+    final bool displayMobileLayout = MediaQuery.of(context).size.width < 600;
+    final Scaffold scaffold = Scaffold(
       appBar: AppBar(
+        // when the app isn't displaying the mobile version of app, hide the menu button that is used to open the navigation drawer
+        automaticallyImplyLeading: displayMobileLayout,
         title: Text(pageTitle),
       ),
-      drawer: const AppDrawer(
-        permanentlyDisplay: false,
-      ),
+      drawer: displayMobileLayout
+          ? const AppDrawer(
+              permanentlyDisplay: false,
+            )
+          : null,
       body: body,
+    );
+    if (displayMobileLayout) {
+      return scaffold;
+    }
+    return Row(
+      children: [
+        const AppDrawer(
+          permanentlyDisplay: true,
+        ),
+        Expanded(
+          child: scaffold,
+        )
+      ],
     );
   }
 }
