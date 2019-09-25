@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../constants/globals.dart';
 import '../constants/page_titles.dart';
 import '../constants/route_names.dart';
+import 'app_route_observer.dart';
 
 /// The navigation drawer for the app.
 /// This listens to changes in the route to update which page is currently been shown
@@ -18,16 +18,22 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> with RouteAware {
   String _selectedRoute;
+  AppRouteObserver _routeObserver;
+  @override
+  void initState() {
+    super.initState();
+    _routeObserver = AppRouteObserver();
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Globals.routeObserver.subscribe(this, ModalRoute.of(context));
+    _routeObserver.subscribe(this, ModalRoute.of(context));
   }
 
   @override
   void dispose() {
-    Globals.routeObserver.unsubscribe(this);
+    _routeObserver.unsubscribe(this);
     super.dispose();
   }
 
@@ -94,7 +100,7 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
             ),
           ),
           if (widget.permanentlyDisplay)
-            VerticalDivider(
+            const VerticalDivider(
               width: 1,
             )
         ],

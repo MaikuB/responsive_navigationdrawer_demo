@@ -8,9 +8,9 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return const AppScaffold(
       pageTitle: PageTitles.gallery,
-      body: const Center(
+      body: Center(
         child: Text('This is the gallery page'),
       ),
     );

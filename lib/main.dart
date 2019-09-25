@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'constants/globals.dart';
 import 'constants/route_names.dart';
 import 'pages/gallery_page.dart';
 import 'pages/home_page.dart';
 import 'pages/settings_page.dart';
 import 'pages/slideshow_page.dart';
+import 'widgets/app_route_observer.dart';
 
 void main() => runApp(DemoApp());
 
@@ -26,7 +26,7 @@ class DemoApp extends StatelessWidget {
         ),
       ),
       initialRoute: RouteNames.home,
-      navigatorObservers: [Globals.routeObserver],
+      navigatorObservers: [AppRouteObserver()],
       routes: {
         RouteNames.home: (_) => const HomePage(),
         RouteNames.gallery: (_) => const GalleryPage(),
