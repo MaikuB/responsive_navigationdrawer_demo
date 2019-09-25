@@ -44,49 +44,59 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Row(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('User'),
-            accountEmail: Text('user@email.com'),
-            currentAccountPicture: CircleAvatar(
-              child: Icon(Icons.android),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const UserAccountsDrawerHeader(
+                  accountName: Text('User'),
+                  accountEmail: Text('user@email.com'),
+                  currentAccountPicture: CircleAvatar(
+                    child: Icon(Icons.android),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text(PageTitles.home),
+                  onTap: () async {
+                    await _navigateTo(context, RouteNames.home);
+                  },
+                  selected: _selectedRoute == RouteNames.home,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text(PageTitles.gallery),
+                  onTap: () async {
+                    await _navigateTo(context, RouteNames.gallery);
+                  },
+                  selected: _selectedRoute == RouteNames.gallery,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.slideshow),
+                  title: const Text(PageTitles.slideshow),
+                  onTap: () async {
+                    await _navigateTo(context, RouteNames.slideshow);
+                  },
+                  selected: _selectedRoute == RouteNames.slideshow,
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text(PageTitles.settings),
+                  onTap: () async {
+                    await _navigateTo(context, RouteNames.settings);
+                  },
+                  selected: _selectedRoute == RouteNames.settings,
+                ),
+              ],
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text(PageTitles.home),
-            onTap: () async {
-              await _navigateTo(context, RouteNames.home);
-            },
-            selected: _selectedRoute == RouteNames.home,
-          ),
-          ListTile(
-            leading: const Icon(Icons.photo_library),
-            title: const Text(PageTitles.gallery),
-            onTap: () async {
-              await _navigateTo(context, RouteNames.gallery);
-            },
-            selected: _selectedRoute == RouteNames.gallery,
-          ),
-          ListTile(
-            leading: const Icon(Icons.slideshow),
-            title: const Text(PageTitles.slideshow),
-            onTap: () async {
-              await _navigateTo(context, RouteNames.slideshow);
-            },
-            selected: _selectedRoute == RouteNames.slideshow,
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text(PageTitles.settings),
-            onTap: () async {
-              await _navigateTo(context, RouteNames.settings);
-            },
-            selected: _selectedRoute == RouteNames.settings,
-          ),
+          if (widget.permanentlyDisplay)
+            VerticalDivider(
+              width: 1,
+            )
         ],
       ),
     );
